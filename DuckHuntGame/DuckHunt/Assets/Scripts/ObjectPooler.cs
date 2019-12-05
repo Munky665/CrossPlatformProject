@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[System.Serializable]
 public class ObjectPoolItem
 {
     public GameObject objectToPool;
@@ -25,14 +25,16 @@ public class ObjectPooler : MonoBehaviour
     void Start()
     {
         pooledObjects = new List<GameObject>();
-
-        foreach(ObjectPoolItem item in itemsToPool)
+        if (itemsToPool != null)
         {
-            for(int i =0; i < item.amountToPool; i++)
+            foreach (ObjectPoolItem item in itemsToPool)
             {
-                GameObject obj = Instantiate(item.objectToPool);
-                obj.SetActive(false);
-                pooledObjects.Add(obj);
+                for (int i = 0; i < item.amountToPool; i++)
+                {
+                    GameObject obj = Instantiate(item.objectToPool);
+                    obj.SetActive(false);
+                    pooledObjects.Add(obj);
+                }
             }
         }
     }

@@ -24,7 +24,8 @@ public class GunFire : MonoBehaviour
             {
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow, 5);
                 Debug.Log("Did Hit");
-                bulletHitEvent?.Invoke();
+                DuckShot duck = hit.collider.GetComponent<DuckShot>();
+                duck.DuckWasShot();
             }
             else
             {

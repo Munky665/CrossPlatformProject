@@ -61,4 +61,12 @@ public class ObjectPooler : MonoBehaviour
         return null;
     }
 
+    public GameObject GetPooledDuck(string tag, int position)
+    {
+        if(!pooledObjects[position].activeInHierarchy && pooledObjects[position].tag == tag)
+        {
+            return pooledObjects[position];
+        }
+        return null;
+    }
 }

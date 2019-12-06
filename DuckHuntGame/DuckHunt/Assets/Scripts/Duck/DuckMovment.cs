@@ -10,24 +10,27 @@ public class DuckMovment : MonoBehaviour
     [SerializeField]
     float timer = 5;
     System.Random rand;
-    float directionTimer = 0;
+    float directionTimer = 1;
     Vector3 origin;
+    float temp;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         rand = new System.Random();
         origin = transform.position;
         GunFire.bulletHitEvent += RestDuck;
+        temp = rand.Next(0, 2);
     }
 
     // Update is called once per frame
     void Update()
     {
-        var RightVector = new Vector3(1, 1, 0);
-        var LeftVector = new Vector3(-1, 1, 0);
-        float temp = 0;
+        //set direction vectors
+        var RightVector = new Vector3(0, 1, 1);
+        var LeftVector = new Vector3(0, 1, -1);
 
-        if (directionTimer < 1)
+        //
+        if (directionTimer < 0.5f)
         {
             temp = rand.Next(0, 2);
             directionTimer = timer;
@@ -40,10 +43,12 @@ public class DuckMovment : MonoBehaviour
         switch (temp)
         {
             case 0:
-                transform.Translate(RightVector * moveSpeed * Time.deltaTime);
+                transform.position +=  RightVector * moveSpeed * Time.deltaTime;
+                transform.localRotation = Quaternion.Euler(30,90,0);
                 break;
             case 1:
-                transform.Translate(LeftVector * moveSpeed * Time.deltaTime);
+                transform.position += LeftVector * moveSpeed * Time.deltaTime;
+                transform.localRotation = Quaternion.Euler(-30, -90, 0);
                 break;
         }
     }

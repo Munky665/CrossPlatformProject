@@ -6,9 +6,11 @@ public class DuckManager : MonoBehaviour
 {
 
     float duckActivator;
-    [SerializeField]
-    float timeHolder = 5;
-    float waveNumber = 1;
+    public float timeHolder = 5;
+    public WaveManager waveManager;
+
+    int duckToActivate = 0;
+    int maxDucks = 9;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,20 +33,23 @@ public class DuckManager : MonoBehaviour
 
     void ActivateDuck()
     {
-        for (int i = 0; i < waveNumber; i++)
+        if (duckToActivate > maxDucks)
         {
-            if (ObjectPooler.Instance.GetPoolObject("Duck").activeInHierarchy == false)
-            {
-                ObjectPooler.Instance.GetPoolObject("Duck").SetActive(true);
-            }
-
+            duckToActivate = 0;
         }
+        ObjectPooler.Instance.GetPooledDuck("Duck", duckToActivate).SetActive(true);
+        duckToActivate++;
     }
 
     
 
     void WaveIncrease()
     {
-        waveNumber++;
+        waveManager.wave++;
+    }
+
+    private void OnDestroy()
+    {
+        waveManager.wave = 1;
     }
 }

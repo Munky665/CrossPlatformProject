@@ -62,13 +62,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\DuckManager.cs" />
-    <Compile Include="Assets\Scripts\DuckMovment.cs" />
-    <Compile Include="Assets\Scripts\DuckShot.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Duck\DuckMovment.cs" />
+    <Compile Include="Assets\Scripts\Duck\DuckShot.cs" />
     <Compile Include="Assets\Scripts\GunFire.cs" />
+    <Compile Include="Assets\Scripts\Managers\DuckManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\ShellManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\WaveManager.cs" />
     <Compile Include="Assets\Scripts\ObjectPooler.cs" />
-    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Aie Class/CrossPlatformDevelopment/DuckHuntGame/DuckHunt/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
